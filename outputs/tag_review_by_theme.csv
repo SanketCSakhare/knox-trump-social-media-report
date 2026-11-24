@@ -1,0 +1,17 @@
+theme,label,supported_Y,unsupported_N,reviewed,ai_agreement_percent,reviewer,human_validated
+economy_prices,"Economy, prices and tariffs",5,10,15,33.33,AI assistant,No
+immigration_border,Immigration and border,11,4,15,73.33,AI assistant,No
+crime_law_order,Crime and law and order,13,2,15,86.67,AI assistant,No
+faith_values,Faith and values,9,6,15,60.0,AI assistant,No
+legal_persecution,Legal persecution,13,2,15,86.67,AI assistant,No
+election_fraud,Election fraud and integrity,10,5,15,66.67,AI assistant,No
+media_attack,Media attacks,10,5,15,66.67,AI assistant,No
+attack_opponent,Attacks on opponents,14,1,15,93.33,AI assistant,No
+endorsement,Endorsing other candidates,12,3,15,80.0,AI assistant,No
+foreign_peace,"Foreign policy, war and peace",9,6,15,60.0,AI assistant,No
+military_patriotic,Military and patriotism,14,1,15,93.33,AI assistant,No
+health_maha,Health and MAHA,10,5,15,66.67,AI assistant,No
+tech_crypto,"Technology, AI and crypto",9,6,15,60.0,AI assistant,No
+sports_culture,Sports and culture war,13,2,15,86.67,AI assistant,No
+gratitude_unity,"Gratitude, condolence and unity",11,4,15,73.33,AI assistant,No
+self_promo_win,Self-promotion and winning,13,2,15,86.67,AI assistant,No
