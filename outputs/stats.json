@@ -1,0 +1,11 @@
+{
+ "truth_raw": 32754,
+ "truth_rt": 6953,
+ "truth_zero": 5292,
+ "truth_media_only": 5935,
+ "twitter_original_scored": 46515,
+ "twitter_political_era": 24436,
+ "truth_scored": 25790,
+ "r2_twitter": 0.06591168257190472,
+ "r2_truth": 0.2181547609136466
+}

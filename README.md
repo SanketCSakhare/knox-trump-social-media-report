@@ -34,7 +34,8 @@ The report's **Post Checker** runs the same rules and the Truth Social model in 
 | `src/fetch_congress.py` | Downloads the congresstweets sample used by `compare.py` |
 | `outputs/model_effects.csv` | Effect of every theme and style feature, both platforms |
 | `outputs/stability.csv` | Truth Social effects before and after January 2025 |
-| `outputs/hand_check_sample.csv` | 240 posts (15 per theme) for checking tag accuracy by hand |
+| `outputs/hand_check_sample.csv` | 240 posts (15 per theme) for checking tag accuracy, drawn before the rule fixes below |
+| `src/build_page.py`, `src/report_template.html` | Build `index.html` from the model outputs |
 
 ## Run it
 
@@ -46,6 +47,7 @@ mkdir -p data outputs
 python src/postlens.py data/tweets.csv data/truth.csv outputs
 python src/analysis.py
 python src/fetch_congress.py && python src/compare.py
+python src/build_page.py
 ```
 
 ## Limits
@@ -54,6 +56,10 @@ python src/fetch_congress.py && python src/compare.py
 - The results are associations, not causes.
 - Keyword tags are approximate. A post that mentions a theme is not always about it.
 - 5,292 Truth Social posts with zero engagement were dropped as likely collection errors.
+
+## Rule fixes after review
+
+A full-text review of 240 tagged posts found weak economy, faith, foreign policy and technology tags. The rules were then changed so that "great job" no longer counts as jobs, "Eastern" as Easter, "tax returns" as economy, "God Bless" as faith, "Russia hoax" and "war on…" as foreign policy, or "Elon/Musk" as technology, and endorsement templates no longer count as foreign policy. Both models were refitted. The headline findings did not change.
 
 ## Use of AI
 

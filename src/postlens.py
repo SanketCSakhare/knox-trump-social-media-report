@@ -23,18 +23,18 @@ import statsmodels.formula.api as smf
 # ---------------------------------------------------------------- rule book
 # Each theme = list of regex patterns (case-insensitive, word boundaries).
 THEMES = {
-    "economy_prices": [r"inflation", r"prices?", r"gas\b", r"groceries", r"stock market", r"jobs?\b",
-                       r"economy", r"tax(es)?\b", r"tariffs?", r"wages?", r"interest rates?", r"\bfed\b",
+    "economy_prices": [r"inflation", r"prices?\b", r"gas\b", r"groceries", r"stock market", r"jobs\b", r"job (numbers|reports?|growth|creation|market|losses)", r"unemployment",
+                       r"economy", r"tax(es)?\b(?! returns)", r"tariffs?", r"wages?", r"interest rates?", r"the fed\b", r"federal reserve",
                        r"powell", r"affordab", r"egg prices", r"401k", r"dow\b", r"s&p"],
     "immigration_border": [r"border", r"illegal (alien|immigra|migrant)", r"migrants?", r"deport", r"\bice\b",
                            r"\bwall\b", r"invasion", r"sanctuary", r"asylum", r"cartel"],
     "crime_law_order": [r"crime rates?", r"violent crime", r"crime is", r"criminals? (aliens|migrants|gangs)", r"police", r"law and order", r"law & order", r"murder",
                         r"violent", r"fentanyl", r"\bgangs?\b", r"\bms-13\b", r"national guard"],
-    "faith_values": [r"\bgod\b", r"christian", r"church", r"pray(er|ers|ing)?", r"bible", r"faith",
-                     r"religio", r"christmas", r"easter", r"abortion", r"pro.?life", r"\bjesus\b"],
+    "faith_values": [r"god\b(?! bless)", r"christian", r"church", r"pray(er|ers|ing)?", r"bible", r"(?<!bad )(?<!good )faith\b",
+                     r"religio", r"christmas", r"easter\b", r"abortion", r"pro.?life", r"\bjesus\b"],
     "legal_persecution": [r"witch ?hunt", r"indict", r"\bdoj\b", r"\bfbi\b", r"jack smith", r"bragg",
                           r"letitia james", r"engoron", r"\bjudge\b", r"prosecut", r"weaponiz", r"mar-a-lago raid",
-                          r"lawfare", r"\bhoax\b", r"e\.? jean carroll", r"\btrial\b", r"persecut", r"immunity"],
+                          r"lawfare", r"\bhoax\b", r"russia,? ?(hoax|collusion|russia)", r"e\.? jean carroll", r"\btrial\b", r"persecut", r"immunity"],
     "election_fraud": [r"rigged", r"fraud", r"stolen election", r"cheat", r"ballot", r"voter id",
                        r"mail-in", r"dominion", r"election interference", r"2000 mules"],
     "media_attack": [r"fake news", r"\bcnn\b", r"msdnc", r"msnbc", r"new york times", r"failing .?times",
@@ -49,13 +49,13 @@ THEMES = {
                     r"champion for", r"(warrior|fighter|advocate|representative) for", r"america first (patriot|warrior|fighter|champion)",
                     r"will (fight|work) (hard )?(to|for)", r"doing a (truly )?(fantastic|great|tremendous) job representing",
                     r"(congressman|congresswoman|senator|governor|attorney general|state representative) [A-Z][a-z]+ [A-Z][a-z]+ (is|has|will)"],
-    "foreign_peace": [r"china", r"russia", r"ukraine", r"putin", r"\bxi\b", r"iran", r"israel", r"gaza",
-                      r"\bnato\b", r"north korea", r"world war", r"\bwar\b", r"\bpeace\b", r"ceasefire", r"hamas"],
+    "foreign_peace": [r"china\b", r"russia\b(?!,? ?(russia|hoax|collusion|witch))", r"ukraine", r"putin", r"\bxi\b", r"iran", r"israel", r"gaza",
+                      r"\bnato\b", r"north korea", r"world war", r"war\b(?! on)", r"\bpeace\b", r"ceasefire", r"hamas"],
     "military_patriotic": [r"veterans?", r"military", r"soldiers?", r"troops", r"\barmy\b", r"\bnavy\b",
                            r"memorial day", r"independence day", r"4th of july"],
     "health_maha": [r"\bmaha\b", r"\brfk\b", r"robert f\.? kennedy", r"bobby kennedy", r"vaccin", r"autism", r"food dye", r"chronic disease",
                     r"obamacare", r"healthcare", r"drug prices", r"covid", r"pharma"],
-    "tech_crypto": [r"crypto", r"bitcoin", r"\bai\b", r"artificial intelligence", r"\belon\b", r"musk",
+    "tech_crypto": [r"crypto", r"bitcoin", r"\bai\b", r"artificial intelligence", r"technology",
                     r"tiktok", r"blockchain", r"stablecoin", r"tech\b"],
     "sports_culture": [r"\bufc\b", r"super bowl", r"\bnfl\b", r"\bgolf\b", r"football", r"baseball",
                        r"rogan", r"podcast", r"\bwrestl", r"daytona", r"olympic", r"\bwoke\b", r"transgender",
@@ -82,7 +82,8 @@ COMPILED = {k: re.compile(r"\b(?:" + "|".join(v) + ")", re.I) for k, v in THEMES
 
 
 ISSUE_THEMES = ["economy_prices", "immigration_border", "crime_law_order", "faith_values",
-                "military_patriotic", "health_maha", "tech_crypto", "sports_culture", "self_promo_win"]
+                "military_patriotic", "health_maha", "tech_crypto", "sports_culture", "self_promo_win",
+                "foreign_peace"]
 
 
 def tag_themes(text: pd.Series) -> pd.DataFrame:
