@@ -53,10 +53,15 @@ nav.scroll{position:sticky;top:0;z-index:5}}
 .trk:before{content:"";position:absolute;left:50%;top:-4px;bottom:-4px;border-left:1px solid var(--mute)}
 .bar{position:absolute;top:3px;height:12px}
 .dot{position:absolute;top:4px;width:10px;height:10px;border-radius:50%;border:2px solid var(--slate);background:var(--bg);margin-left:-5px}
-.faint{opacity:.35}
+.howto{font-size:15px;background:var(--panel);border:1px solid var(--rule);padding:10px 12px;max-width:none}
+.k1{font-weight:600}.k2{color:var(--pink);font-weight:600}.k3{color:var(--mute);font-weight:600}
+.unc{color:var(--mute)!important}
 @media(max-width:600px){.r{grid-template-columns:minmax(0,1fr) 3.6em 3.6em}.r .trk{grid-column:1/-1;grid-row:2}}
 .vol{display:grid;gap:8px}
-.vb{display:grid;grid-template-columns:4.5em minmax(0,1fr) 3.5em;gap:10px;align-items:center;font-size:14px}
+.vb{display:grid;grid-template-columns:5.6em minmax(0,1fr);gap:10px;align-items:center;font-size:14px}
+.bl{white-space:nowrap;font-size:13px}
+.tk{position:relative;margin-right:6.5em}.tk span{position:absolute;top:50%;transform:translateY(-50%);margin-left:4px;padding:0 3px;background:var(--bg);z-index:1;line-height:1.2}.tk:after{content:"";position:absolute;top:-3px;bottom:-3px;left:calc(100%/2.1);border-left:1px dashed var(--mute)}
+.tk i{display:block}
 .vb i{display:block;height:22px;background:var(--ink)}
 .vb i.p{background:var(--pink)}
 .panel{background:var(--panel);border:1px solid var(--rule);padding:18px}
@@ -99,18 +104,18 @@ footer{border-top:1px solid var(--rule)}
 <div class="fig" id="tl" role="img" aria-label="Monthly median likes per post, 2009 to 2026, log scale"><svg></svg></div>
 <p class="note">Retweets excluded. Raw likes rose several thousand-fold as his following grew, so every other chart uses "lift": likes divided by the median for his posts in the surrounding 31 days. The Truth Social dip in March to July 2025 lines up with gaps in how the data was collected, not a real fall.</p>
 </div></header>
-<nav class="scroll" aria-label="Sections"><a href="#works">What works</a><a href="#base">Base vs broad</a><a href="#volume">Post less</a><a href="#coalition">The coalition</a><a href="#compare">Other politicians</a><a href="#playbook">Playbook for 2026</a><a href="#checker">Post Checker</a><a href="#limits">Limits and sources</a></nav>
+<nav class="scroll" aria-label="Sections"><a href="#works">What works</a><a href="#base">Base vs broad</a><a href="#volume">Post less</a><a href="#coalition">The coalition</a><a href="#compare">Other politicians</a><a href="#playbook">Playbook for 2026</a><a href="#checker">Post Checker</a><a href="#inout">What's in and out</a><a href="#limits">Limits and sources</a></nav>
 
 <section class="band" id="works"><div class="in two">
 <div>
 <h2>Fights, faith and gratitude lift his posts. Endorsements, links and pundit quotes sink them.</h2>
-<p>Each row shows how much more (or less) a post gets than his own baseline when it touches a theme, holding the other themes and style features constant. Bars are Truth Social (2022 to 2026), the audience closest to his base: dark above his norm, pink below. Open circles are Twitter during his political years (June 2015 to January 2021), when his audience was much wider.</p>
+<p>Each row shows how a theme changes likes compared with his normal post, with the other themes held constant. Truth Social (2022 to 2026) is the audience closest to his base; Twitter (2015 to 2021) reached a much wider one.</p>
 <p>The clearest loser is party work. Endorsements of other candidates, which make up 7% of his Truth Social posts, get 40% fewer likes than his norm, and the penalty grew to 61% in his second term. Posts that are just a link, or that quote a TV pundit, also underperform. His followers come for him, not for his reading list.</p>
-<p>The winners are emotional and personal: claims about the 2020 election, gratitude and condolence moments, faith, crime, the military, and attacks on named opponents. Faint bars are not statistically clear.</p>
+<p>The winners are emotional and personal: claims about the 2020 election, gratitude and condolence moments, faith, crime, the military, and attacks on named opponents.</p>
 <h3>Style matters as much as topic</h3>
 <div class="rows" id="style"></div>
 </div>
-<div><div class="rows" id="themes"></div><p class="note">Regression on log lift, 25,790 Truth Social and 24,436 Twitter posts, robust standard errors. A post can carry several themes. Theme tags come from transparent keyword rules (see method note).</p></div>
+<div><p class="howto"><b>How to read this chart.</b> Bar = Truth Social: <span class="k1">dark</span> means more likes than normal, <span class="k2">pink</span> means fewer. Circle = the same theme on Twitter. <span class="k3">Grey</span> results are too uncertain to rely on.</p><div class="rows" id="themes"></div><p class="note">Regression on log lift, 25,790 Truth Social and 24,436 Twitter posts, robust standard errors. A post can carry several themes. Theme tags come from transparent keyword rules (see method note).</p></div>
 </div></section>
 
 <section class="band" id="base" style="background:var(--panel)"><div class="in two">
@@ -132,7 +137,7 @@ footer{border-top:1px solid var(--rule)}
 <div>
 <h3>Lift per post by number of posts that day</h3>
 <div class="vol" id="vol"></div>
-<div class="key"><span><i class="sw" style="background:var(--pink)"></i>Truth Social</span><span><i class="sw" style="background:var(--ink)"></i>Twitter 2015 to 2021</span><span>Line marks his normal (1.0×)</span></div>
+<p class="note">Dashed line = his normal post (1.0×). Above 1.0× means more likes than usual.</p>
 <h3 style="margin-top:22px">His top posts by lift</h3><div id="tops"></div>
 </div>
 </div></section>
@@ -154,9 +159,9 @@ footer{border-top:1px solid var(--rule)}
 <section class="band" id="compare"><div class="in two">
 <div>
 <h2>His edge was voice, not hostility. Congressional leaders attacked the other side more often.</h2>
-<p>We ran 2020 posts from 14 senior members of Congress through the same rules as Trump's 2020 tweets. Trump used exclamation marks in 71% of his posts; the next highest was Elise Stefanik at 36%, and the rest sat between 0% (Mitch McConnell) and 20%. His posts were half as long (19 words against 26 to 42). Yet he mentioned the opposing party less often (20%) than Chuck Schumer (62%), Kevin McCarthy (46%) or Jim Jordan (41%).</p>
-<p>Research on nearly 2.7 million posts from US politicians and media found that each word about the political out-group raised the odds of a share by 67%. So attacks work for everyone. What Trump added was a personal, emotional, unmistakably first-person voice that staff-written accounts lack.</p>
-<p>Since 2025 others have borrowed parts of it. Gavin Newsom's press office copied Trump's all-caps style in August 2025 and gained over 250,000 X followers in three weeks, though critics called it stale by December. Zohran Mamdani took the opposite route: calm, funny short videos about prices and traffic, with roughly half of views coming from people who did not follow him. Bernie Sanders' Facebook posts jumped from about 2,000 to over 26,000 interactions each in the first weeks of Trump's second term.</p>
+<p>Run through the same rules, Trump's 2020 posts stand out for voice: 71% used an exclamation mark (no congressional leader passed 36%), and they were about half as long. But he named the other party less often (20%) than Chuck Schumer (62%) or Kevin McCarthy (46%).</p>
+<p>Attacks work for everyone: in a study of 2.7 million posts, each word about the other side raised the odds of a share by 67%. What Trump added was a first-person, emotional voice that staff-run accounts lack.</p>
+<p>Since 2025, Gavin Newsom's press office copied his all-caps style and gained 250,000 X followers in three weeks. Zohran Mamdani went the other way: calm short videos about prices, with about half of views from people who did not follow him.</p>
 </div>
 <div><h3>How senior politicians write, 2020</h3><div class="scroll"><table id="cmp"><thead><tr><th>Politician</th><th class="n">Posts</th><th class="n">With "!"</th><th class="n">Name other side</th><th class="n">With link</th><th class="n">Median words</th></tr></thead><tbody></tbody></table></div><p class="note">Original posts on every third day of 2020 from the public congresstweets archive; personal and official accounts combined. Official accounts are often staff-run. Style only: this archive holds no engagement counts.</p></div>
 </div></section>
@@ -189,6 +194,24 @@ footer{border-top:1px solid var(--rule)}
 </div>
 </div></section>
 
+<section class="band" id="inout" style="background:var(--panel)"><div class="in">
+<h2>What's in this report, what's out, and why</h2>
+<p>The files held about 89,000 posts and 30 extra columns. We kept what answers the brief and dropped what would mislead.</p>
+<div class="scroll"><table class="stack"><thead><tr><th>Data</th><th>Decision</th><th>Why</th></tr></thead><tbody>
+<tr><td data-l="Data">Trump's own original posts (72,305)</td><td data-l="Decision"><b>In</b></td><td data-l="Why">The core evidence for every chart.</td></tr>
+<tr><td data-l="Data">Reposts (6,953 on Truth Social) and Twitter retweets</td><td data-l="Decision">Out</td><td data-l="Why">Other people's words, and retweets carry no like counts in this file.</td></tr>
+<tr><td data-l="Data">5,292 Truth Social posts with zero likes, reposts and replies</td><td data-l="Decision">Out</td><td data-l="Why">Almost certainly collection errors, not real silence.</td></tr>
+<tr><td data-l="Data">Twitter, 2009 to mid-2015</td><td data-l="Decision">Timeline only</td><td data-l="Why">Before his campaign his audience was tiny, so the models start at the June 2015 launch.</td></tr>
+<tr><td data-l="Data">Images and video with no text (5,935 posts)</td><td data-l="Decision">One style row</td><td data-l="Why">No words to tag, so we measure them as a group (20% below normal).</td></tr>
+<tr><td data-l="Data">Time of day</td><td data-l="Decision">Out</td><td data-l="Why">Night posts did 18% better before 2025 and 21% worse after. Too unstable to advise on.</td></tr>
+<tr><td data-l="Data">Deleted tweets</td><td data-l="Decision">Out</td><td data-l="Why">Their like counts are missing: the typical deleted tweet shows 0 likes despite thousands of shares.</td></tr>
+<tr><td data-l="Data">The file's own topic and rhetoric labels</td><td data-l="Decision">Cross-check only</td><td data-l="Why">How they were made is unknown. They point the same way as ours: insults 1.27× his normal, praise 0.94×.</td></tr>
+<tr><td data-l="Data">The file's emotion column</td><td data-l="Decision">Out</td><td data-l="Why">It reads "unknown" for every post.</td></tr>
+<tr><td data-l="Data">Shares and replies as extra measures</td><td data-l="Decision">Out</td><td data-l="Why">Shares move almost exactly with likes (correlation 0.97), so they add nothing new. Twitter has no reply counts.</td></tr>
+<tr><td data-l="Data">Other politicians' engagement</td><td data-l="Decision">Not available</td><td data-l="Why">The public Congress archive holds text only, so we compare style, not results.</td></tr>
+</tbody></table></div>
+</div></section>
+
 <footer class="band" id="limits"><div class="in two">
 <div>
 <h2>What this can and cannot tell you</h2>
@@ -210,7 +233,6 @@ footer{border-top:1px solid var(--rule)}
 <li><a href="https://github.com/alexlitel/congresstweets">congresstweets archive (Alex Litel), Congress posts 2020</a></li>
 <li><a href="https://abc7.com/post/governor-gavin-newsoms-trolling-president-donald-trump-attracts-attention-complicated-redistricting-fight/17616948/">ABC7: Newsom press office follower growth, Aug 2025</a>; <a href="https://www.washingtonexaminer.com/?p=3926113">Washington Examiner, Dec 2025</a></li>
 <li><a href="https://newrepublic.com/article/198482/zohran-mamdani-success-rattle-national-democrats">The New Republic: Mamdani campaign video data, 2025</a></li>
-<li><a href="https://www.chaoticera.news/p/is-politics-making-a-comeback-on-facebook">Chaotic Era / CAP Action: Facebook political engagement, Feb 2025</a></li>
 <li><a href="https://www.npr.org/2024/09/24/g-s1-23911/how-trump-and-vances-tour-of-dude-influencers-might-help-them-win">NPR: Trump and Vance podcast strategy, Sep 2024</a></li>
 <li><a href="https://www.dataforprogress.org/insights/2025/3/18/want-to-reach-low-engagement-voters-you-need-a-message-thats-not-just-persuasive-but-viral">Data for Progress: low-engagement voters, Mar 2025</a></li>
 <li><a href="https://www.knowyourmobile.com/truth-social/truth-social-stats">Truth Social audience profile estimates, 2025</a></li>
@@ -246,7 +268,7 @@ const th=D.themes.filter(d=>d.platform==="Truth Social").sort((a,b)=>b.effect-a.
 const tw={};D.themes.filter(d=>d.platform==="Twitter").forEach(d=>tw[d.theme]=d);
 const sc=v=>50+Math.max(-48,Math.min(48,v*1.0));
 const row=(lab,e,p,e2,p2)=>{const l=Math.min(50,sc(e)),w=Math.abs(sc(e)-50);
-return `<div class="r"><span>${esc(lab)}</span><div class="trk"><i class="bar ${p>.05?"faint":""}" style="left:${l}%;width:${w}%;background:${e<0?"var(--pink)":"var(--ink)"}"></i>${e2==null?"":`<i class="dot ${p2>.05?"faint":""}" style="left:${sc(e2)}%"></i>`}</div><span class="v">${pct(e)}</span><span class="v" style="color:var(--slate)">${e2==null?"":pct(e2)}</span></div>`};
+const u=p>.05,u2=p2>.05;return `<div class="r"><span>${esc(lab)}</span><div class="trk"><i class="bar" style="left:${l}%;width:${w}%;background:${u?"var(--rule)":e<0?"var(--pink)":"var(--ink)"}"></i>${e2==null?"":`<i class="dot" style="left:${sc(e2)}%;${u2?"border-color:var(--mute)":""}"></i>`}</div><span class="v ${u?"unc":""}">${pct(e)}</span><span class="v ${u2?"unc":""}" style="color:var(--slate)">${e2==null?"":pct(e2)}</span></div>`};
 $("themes").innerHTML=`<div class="r h"><span>Theme</span><span>−48% · 0 · +48%</span><span class="v">Truth</span><span class="v">Twitter</span></div>`+th.map(d=>row(d.label,d.effect,d.p,tw[d.theme].effect,tw[d.theme].p)).join("");
 const st={};D.style.forEach(d=>{(st[d.key]=st[d.key]||{})[d.model.startsWith("Truth")?"t":"w"]=d});
 const skeys=["s_exclaim","s_caps_heavy","s_long","s_question","s_short","s_quote_other","media_only","s_link_only","s_has_link"];
@@ -258,7 +280,8 @@ const gapRows=["election_fraud","legal_persecution","attack_opponent","faith_val
 $("gap").tBodies[0].innerHTML=gapRows.map(k=>{const a=th.find(d=>d.theme===k),b=tw[k];return `<tr class="${read(a.effect,b.effect)==="Base only"?"tr":""}"><td>${esc(a.label)}</td><td class="n">${pct(a.effect)}</td><td class="n">${pct(b.effect)}</td><td>${read(a.effect,b.effect)}</td></tr>`}).join("");
 
 /* volume */
-const vmax=1.6;$("vol").innerHTML=D.volume.map((d,i)=>{const t=D.volume_tw[i];return `<div class="vb"><span>${esc(d.n)} posts</span><div style="position:relative"><i class="p" style="width:${d.median_lift/vmax*100}%"></i><i style="width:${t.median_lift/vmax*100}%;height:10px;margin-top:3px"></i><span style="position:absolute;top:-3px;bottom:-3px;left:${100/vmax}%;border-left:1px dashed var(--mute)"></span></div><span class="v">${d.median_lift.toFixed(2)}×</span></div>`}).join("");
+const vmax=2.1;const vbar=(v,c,h,lab)=>`<div class="bl"><div class="tk"><i class="${c}" style="width:${v/vmax*100}%;height:${h}px"></i><span style="left:${v/vmax*100}%">${v.toFixed(2)}×${lab}</span></div></div>`;
+$("vol").innerHTML=D.volume.map((d,i)=>{const t=D.volume_tw[i];return `<div class="vb"><span>${esc(d.n)} a day</span><div style="display:grid;gap:3px">${vbar(d.median_lift,"p",16,i?"":" Truth Social")}${vbar(t.median_lift,"",10,i?"":" Twitter")}</div></div>`}).join("");
 const tops=[...D.top_tw.slice(0,3),...D.top_truth.slice(0,3)];
 $("tops").innerHTML=tops.map(d=>`<div class="quote">${esc(d.text.length>160?d.text.slice(0,157)+"…":d.text)}<small>${esc(d.date)} · ${d.lift}× his usual likes</small></div>`).join("");
 
@@ -276,11 +299,11 @@ const ro2=new ResizeObserver(drawAP);ro2.observe(ap);
 
 /* coalition table */
 const seg=[
-["Core MAGA base","Truth Social users: heavily Republican, mostly over 55. Approval among Trump voters 65+ still 76% in Oct 2026.","Rewards election claims (+12%), attacks (+7%), gratitude (+11%). Ignores endorsements (−40%) and links (−22%).","Easy to excite, hard to grow. Engagement here is a loyalty gauge."],
-["Faith voters","81% of white evangelical Protestants voted for him in 2024; Protestants are 54% of his voters.","Faith posts beat his norm on both platforms (+9% Truth, +22% Twitter).","Values language travels beyond the base. Sincerity reads better than slogans."],
-["Young men","Won men under 50 in 2024 after losing them by 10 in 2020. Approval among his 19 to 34 voters fell from 92% to 49%.","Sports and culture posts were flat on Truth Social. This group is barely on his platform.","Reach them through long-form podcasts and creators. Gains here were fast and so were losses."],
-["Hispanic working class","Came within 3 points of Harris in 2024 (Biden won them by 25 in 2020). Approval among his Hispanic voters 93% to 57%.","Economy and prices posts were flat on Truth Social and 4% below norm on Twitter. Economy tags are among the least precise in this study.","Cost-of-living messages win votes without winning likes. Judge them on polling, not engagement."],
-["Low-engagement voters","Trump won people who don't follow political news by 19 points. 38% of under-30s get news from influencers.","Not visible in post data: they meet politics through feeds and creators, not his account.","Short, shareable video in other people's channels. Mamdani's videos reached about half non-followers."]];
+["Core MAGA base","Older, heavily Republican Truth Social audience. 76% of his voters over 65 still approve.","Election claims +12%, attacks +7%. Endorsements −40%.","A loyalty gauge, not a growth engine."],
+["Faith voters","81% of white evangelicals backed him in 2024.","Faith posts +9% on Truth Social, +22% on Twitter.","Values language travels beyond the base."],
+["Young men","Swung to him in 2024. Approval among his 19 to 34 voters: 92% to 49%.","Barely on his platform. Sports posts flat.","Reach them through podcasts and creators."],
+["Hispanic working class","Nearly even in 2024 (Biden won them by 25 in 2020). Approval among his Hispanic voters: 93% to 57%.","Economy posts flat on Truth Social, −4% on Twitter. Tags less precise.","Judge cost-of-living messages by polls, not likes."],
+["Low-engagement voters","He won people who don't follow news by 19 points. 38% of under-30s get news from influencers.","Not visible in post data.","Short video on other people's channels."]];
 $("seg").tBodies[0].innerHTML=seg.map(r=>`<tr>${r.map((c,i)=>`<td data-l="${["Group","What we know","What his posts show","Lesson"][i]}">${i?esc(c):"<b>"+esc(c)+"</b>"}</td>`).join("")}</tr>`).join("");
 
 /* comparison table */
